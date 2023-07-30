@@ -91,16 +91,15 @@ void brownnoise_dsp64(t_brownnoise* self,
                       double samplerate,
                       long maxvectorsize,
                       long flags) {
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)brownnoise_perform64, 0, NULL);
+  object_method(dsp64, gensym("dsp_add64"), (t_object*)self, brownnoise_perform64, 0, NULL);
 }
 
-void brownnoise_assist(t_brownnoise *self, void *unused, t_assist_function io, long index, char *string_dest) {
+void brownnoise_assist(t_brownnoise *self, void *unused, t_assist_function io, long index, char *s) {
   if (io == ASSIST_INLET) {
-        strncpy(string_dest, "Ignore this inlet", ASSIST_STRING_MAXSIZE);
+    sprintf(s, "Ignore this inlet");
   }
   else {  // outlet
-    strncpy(string_dest, "(signal) Brown Noise", ASSIST_STRING_MAXSIZE);
+    sprintf(s, "(signal) Brown Noise");
   }
 }
 

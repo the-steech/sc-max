@@ -129,9 +129,10 @@ void logistic_perform64(t_logistic* self,
 void logistic_dsp64(t_logistic *self, t_object* dsp64, short* count, double samplerate, long maxvectorsize, long flags) {
     self->m_connected[0] = count[0];
     self->m_connected[1] = count[1];
-    
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)logistic_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, logistic_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)logistic_perform64, 0, NULL);
 }
 
 void logistic_assist(t_logistic *x, void *b, t_assist_function io, long a, char *s) {

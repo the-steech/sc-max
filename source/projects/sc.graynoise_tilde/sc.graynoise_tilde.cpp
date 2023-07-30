@@ -87,8 +87,10 @@ void graynoise_dsp64(t_graynoise *self,
                      double samplerate,
                      long maxvectorsize,
                      long flags) {
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)graynoise_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, graynoise_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+                         // dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)graynoise_perform64, 0, NULL);
 }
 
 void graynoise_assist(t_graynoise *x, void *b, long m, long a, char *s) {

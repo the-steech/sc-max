@@ -122,9 +122,10 @@ void lfclipnoise_dsp64(t_lfclipnoise *self,
                        long flags) {
     self->m_sr = samplerate;
     self->m_connected = count[0];
-    
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)lfclipnoise_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, lfclipnoise_perform64, 0, NULL);
+
+    // // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)lfclipnoise_perform64, 0, NULL);
 }
 
 void lfclipnoise_assist(t_lfclipnoise *x, void *b, long m, long a, char *s) {

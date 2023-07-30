@@ -76,8 +76,7 @@ void clipnoise_dsp64(t_clipnoise *self,
                      double samplerate,
                      long maxvectorsize,
                      long flags) {
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)clipnoise_perform64, 0, NULL);
+  object_method(dsp64, gensym("dsp_add64"), (t_object*)self, clipnoise_perform64, 0, NULL);
 }
 
 void clipnoise_assist(t_clipnoise *self, void *b, long m, long a, char *s) {

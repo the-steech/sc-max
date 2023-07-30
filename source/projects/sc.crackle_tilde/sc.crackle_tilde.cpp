@@ -108,9 +108,8 @@ void crackle_dsp64(t_crackle *self,
                    long maxvectorsize,
                    long flags) {
     self->m_connected = count[0];
-    
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)crackle_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, crackle_perform64, 0, NULL);
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)crackle_perform64, 0, NULL);
 }
 
 void crackle_assist(t_crackle *x, void *b, long m, long a, char *s) {

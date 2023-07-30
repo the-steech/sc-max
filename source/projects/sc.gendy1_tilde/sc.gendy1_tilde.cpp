@@ -325,8 +325,10 @@ void gendy_perform64(t_gendy* self,
 
 void gendy_dsp64(t_gendy *self, t_object* dsp64, short* count, double samplerate, long maxvectorsize, long flags) {
     self->mFreqMul = (double) 1.0 / samplerate;
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)gendy_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, gendy_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)gendy_perform64, 0, NULL);
 }
 
 void gendy_assist(t_gendy *self, void *b, t_assist_function io, long a, char *s) {

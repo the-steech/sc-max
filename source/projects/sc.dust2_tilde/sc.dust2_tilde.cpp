@@ -117,8 +117,10 @@ void dust2_dsp64(t_dust2 *self,
                  long maxvectorsize,
                  long flags) {
     self->m_connected = count[0];
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)dust2_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, dust2_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)dust2_perform64, 0, NULL);
 }
 
 void dust2_assist(t_dust2 *x, void *b, long m, long a, char *s) {

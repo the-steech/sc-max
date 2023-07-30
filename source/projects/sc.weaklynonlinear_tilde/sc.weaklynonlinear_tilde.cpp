@@ -140,8 +140,10 @@ void weaklynonlinear_dsp64(t_weaklynonlinear *self,
                          long maxvectorsize,
                          long flags) {
     self->pi_sr = M_PI / samplerate;
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)weaklynonlinear_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, weaklynonlinear_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)weaklynonlinear_perform64, 0, NULL);
 }
 
 void weaklynonlinear_assist(t_weaklynonlinear *x, void *b, long m, long a, char *s) {

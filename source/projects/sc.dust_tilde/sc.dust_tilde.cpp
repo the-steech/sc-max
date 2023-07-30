@@ -118,8 +118,10 @@ void dust_dsp64(t_dust *self,
                 double samplerate,
                 long maxvectorsize,
                 long flags) {
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)dust_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, dust_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)dust_perform64, 0, NULL);
 }
 
 void dust_assist(t_dust *x, void *b, long m, long a, char *s) {

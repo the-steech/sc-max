@@ -85,8 +85,11 @@ void mantissamask_perform64(t_mantissamask* self,
 }
 
 void mantissamask_dsp64(t_mantissamask *self, t_object* dsp64, short* count, double samplerate, long maxvectorsize, long flags) {
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)mantissamask_perform64, 0, NULL);
+    
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, mantissamask_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)mantissamask_perform64, 0, NULL);
 }
 
 void mantissamask_assist(t_mantissamask *self, void *b, t_assist_function io, long a, char *s) {

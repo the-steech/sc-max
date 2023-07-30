@@ -106,8 +106,10 @@ void pinknoise_perform64(t_pinknoise* self,
 }
 
 void pinknoise_dsp64(t_pinknoise *self, t_object* dsp64, short* count, double samplerate, long maxvectorsize, long flags) {
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)pinknoise_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, pinknoise_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)pinknoise_perform64, 0, NULL);
 }
 
 void pinknoise_assist(t_pinknoise *self, void *b, t_assist_function io, long a, char *s) {

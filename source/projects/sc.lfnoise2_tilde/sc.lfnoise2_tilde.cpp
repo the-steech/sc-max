@@ -129,8 +129,10 @@ void lfnoise_perform64(t_lfnoise* self,
 void lfnoise_dsp64(t_lfnoise *self, t_object* dsp64, short* count, double samplerate, long maxvectorsize, long flags) {
     self->m_sr = samplerate;
     self->m_connected  = count[0];
-    object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
-                         dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)lfnoise_perform64, 0, NULL);
+    object_method(dsp64, gensym("dsp_add64"), (t_object*)self, lfnoise_perform64, 0, NULL);
+
+    // object_method_direct(void, (t_object*, t_object*, t_perfroutine64, long, void*),
+    //                      dsp64, gensym("dsp_add64"), (t_object*)self, (t_perfroutine64)lfnoise_perform64, 0, NULL);
 }
 
 void lfnoise_assist(t_lfnoise *x, void *b, t_assist_function io, long a, char *s) {
